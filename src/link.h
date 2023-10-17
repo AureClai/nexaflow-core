@@ -8,15 +8,16 @@
 #include "fd.h"
 #include "lane.h"
 #include <vector>
+#include "node.h"
 // #include <numpy/ndarrayobject.h>
 
 class Link
 {
 public:
     // Constructor
-    Link(const int id, const std::string &name, float priority, int numLanes, int nodeUpID, int nodeDownID, int road_type,
+    Link(const int id, const std::string &name, float priority, int numLanes, int road_type,
          float capacity, float speed, FD fd,
-         float length) : id(id), name(name), priority(priority), numLanes(numLanes), nodeUpID(nodeUpID), nodeDownID(nodeDownID), road_type(road_type), capacity(capacity), speed(speed), fd(fd), length(length)
+         float length) : id(id), name(name), priority(priority), numLanes(numLanes), nodeUp(nullptr), nodeDown(nullptr), road_type(road_type), capacity(capacity), speed(speed), fd(fd), length(length)
     {
         for (int i = 0; i < numLanes; i++)
         {
@@ -37,8 +38,8 @@ public:
     std::string name;
     float priority;
     int numLanes;
-    int nodeUpID;
-    int nodeDownID;
+    Node* nodeUp;
+    Node* nodeDown;
     int road_type;
     float capacity;
     float speed;
@@ -52,6 +53,10 @@ public:
     std::string GetInfo() const;
     std::vector<Event *> getOutEvents() const;
     std::vector<Event *> getInEvents() const;
+    int getPassedOut() const;
+    int getPassedIn() const;
+
+    void connect(Node* nodeIn, Node* nodeOut);
 };
 
 #endif // LINK_H

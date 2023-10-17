@@ -1,4 +1,5 @@
 #include "node.h"
+#include <limits>
 
 std::string Node::GetInfo() const
 {
@@ -9,32 +10,31 @@ std::string Node::GetInfo() const
     info += "Number of Incoming Links: " + std::to_string(NumIncomingLinks) + "\n";
 
     info += "Outgoing Link IDs:\n";
-    for (const int &outgoingLinkID : OutgoingLinksID)
+    for (const Link *outgoingLink : OutgoingLinks)
     {
-        info += "  " + std::to_string(outgoingLinkID) + "\n";
+        info += "  " + std::to_string(outgoingLink->id) + "\n";
     }
 
     info += "Incoming Link IDs:\n";
-    for (const int &incomingLinkID : IncomingLinksID)
+    for (const Link *incomingLink : IncomingLinks)
     {
-        info += "  " + std::to_string(incomingLinkID) + "\n";
+        info += "  " + std::to_string(incomingLink->id) + "\n";
     }
 
     return info;
 }
 
-void Node::connect_incoming_link(int link_id)
+void Node::connect_incoming_link(Link* link)
 {
-    IncomingLinksID.push_back(link_id);
-    NumIncomingLinks += 1;
+    IncomingLinks.push_back(link);
+    NumIncomingLinks++;
 }
 
-void Node::connect_outgoing_link(int link_id)
+void Node::connect_outgoing_link(Link * link)
 {
 
-    OutgoingLinksID.push_back(link_id);
-    NumOutgoingLinks += 1;
-    std::cout << std::to_string(NumOutgoingLinks) << std::endl;
+    OutgoingLinks.push_back(link);
+    NumOutgoingLinks++;
 }
 
 int Node::getPassedCount() const
@@ -67,4 +67,19 @@ TurnMove *Node::findTurnMove(Lane *in, Lane *out)
         return &(it->second);
     }
     return nullptr;
+}
+
+void Node::initialize(){
+    // Next arrivals
+    for (const auto* link : IncomingLinks){
+        for (const auto &pair : link->lanes){
+            next_arrivals[pair.second] = nullptr;
+        }
+    }
+    // Next supplies
+    for (const auto* link : OutgoingLinks){
+        for (const auto &pair : link->lanes){
+            next_supplies[pair.second] = -std::numeric_limits<float>::infinity();
+        }
+    }
 }

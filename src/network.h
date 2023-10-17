@@ -18,7 +18,7 @@ public:
 public:
     std::string GetInfo() const;
 
-    void makeConnections();
+    void makeConnections(std::unordered_map<int, std::pair<int, int>> connections);
 };
 
 #endif // NETWORK_H

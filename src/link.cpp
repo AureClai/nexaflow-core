@@ -6,8 +6,8 @@ std::string Link::GetInfo() const
     info += "ID: " + std::to_string(id) + "\n";
     info += "Priority: " + std::to_string(priority) + "\n";
     info += "Number of Lanes: " + std::to_string(numLanes) + "\n";
-    info += "Node Up ID: " + std::to_string(nodeUpID) + "\n";
-    info += "Node Down ID: " + std::to_string(nodeDownID) + "\n";
+    info += "Node Up ID: " + std::to_string(nodeUp->id) + "\n";
+    info += "Node Down ID: " + std::to_string(nodeDown->id) + "\n";
     info += "Road Type: " + std::to_string(road_type) + "\n";
     info += "Capacity: " + std::to_string(capacity) + "\n";
     info += "Speed: " + std::to_string(speed) + "\n";
@@ -46,4 +46,31 @@ std::vector<Event *> Link::getInEvents() const
     }
 
     return output;
+}
+
+int Link::getPassedOut() const
+{
+    int output = 0;
+    for (const auto &lanePair : lanes)
+    {
+        output += lanePair.second->getPassedOut();
+    }
+    return output;
+}
+int Link::getPassedIn() const
+{
+    int output = 0;
+    for (const auto &lanePair : lanes)
+    {
+        output += lanePair.second->getPassedIn();
+    }
+    return output;
+}
+
+void Link::connect(Node *nodeIn, Node *nodeOut)
+{
+    nodeUp = nodeIn;
+    nodeDown = nodeOut;
+    nodeIn->connect_outgoing_link(this);
+    nodeOut->connect_incoming_link(this);
 }

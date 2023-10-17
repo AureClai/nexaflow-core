@@ -24,16 +24,14 @@ std::string Network::GetInfo() const
     return info;
 }
 
-void Network::makeConnections()
+void Network::makeConnections(std::unordered_map<int, std::pair<int, int>> connections)
 {
-    for (const auto &pair : links)
+    for (const auto &pair : connections)
     {
-        int linkID = pair.first;
-        Link *link = pair.second;
-        int nodeUpId = link->nodeUpID;
-        int nodeDownId = link->nodeDownID;
+        Link *link = links[pair.first];
+        Node* nodeUp = nodes[pair.second.first];
+        Node* nodeDown = nodes[pair.second.second];
 
-        nodes[nodeUpId]->connect_outgoing_link(linkID);
-        nodes[nodeDownId]->connect_incoming_link(linkID);
+        link->connect(nodeUp, nodeDown);
     }
 }

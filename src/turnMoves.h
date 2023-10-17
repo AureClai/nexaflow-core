@@ -36,6 +36,19 @@ public:
     bool isTurnAuthorized() const {
         return isAuthorized;
     }
+
+    Lane* getInLane() const {
+        return inLane;
+    }
+
+    Lane* getOutLane() const {
+        return outLane;
+    }
+
+    std::string getInfos() const {
+        std::string info = std::to_string(isAuthorized);
+        return info;
+    }
 };
 
 #endif

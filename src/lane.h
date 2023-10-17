@@ -3,13 +3,14 @@
 
 #include "event.h"
 #include <unordered_map>
+#include <iostream>
 
 class Link;
 
 class Lane
 {
 public:
-    Lane(Link* link) : link(link) {};
+    Lane(Link* link) : link(link), passedIn(0), passedOut(0) {};
     ~Lane(){};
 
 private:
@@ -39,7 +40,7 @@ public:
     void storeOutEvent(Event *event)
     {
         passedOut+=1;
-        inEvents[passedOut] = event;
+        outEvents[passedOut] = event;
     }
 
     std::unordered_map<int, Event *> getInEvents() const
@@ -54,6 +55,10 @@ public:
 
     Link* getLink() const {
         return link;
+    }
+
+    float getLastTravelTime(){
+        return outEvents[passedOut-1]->time-outEvents[passedOut-2]->time;
     }
 };
 
