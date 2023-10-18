@@ -22,10 +22,10 @@ int main()
     links[1] = &link2;
     links[2] = &link3;
 
-    Node nodeUp = Node(0, "up_node", 1);
-    Node nodeInter = Node(1, "inter_node", 0);
-    Node nodeInter2 = Node(2, "inter_node", 0);
-    Node nodeDown = Node(3, "down_node", 2);
+    Node nodeUp = Node(0, "up_node");
+    Node nodeInter = Node(1, "inter_node");
+    Node nodeInter2 = Node(2, "inter_node");
+    Node nodeDown = Node(3, "down_node");
 
     std::unordered_map<int, Node *> nodes;
 
@@ -47,13 +47,13 @@ int main()
     for (auto &nodePair : nodes)
     {
         Node *node = nodePair.second;
-        if (node->NumIncomingLinks != 0 && node->NumOutgoingLinks != 0)
+        if (node->numIncomingLinks != 0 && node->numOutgoingLinks != 0)
         {
-            for (auto *inlink : node->IncomingLinks)
+            for (auto *inlink : node->incomingLinks)
             {
                 for (auto &inLanePair : inlink->lanes)
                 {
-                    for (auto *outLink : node->OutgoingLinks)
+                    for (auto *outLink : node->outgoingLinks)
                     {
                         for (auto &outLanePair : outLink->lanes)
                         {

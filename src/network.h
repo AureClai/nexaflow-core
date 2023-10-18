@@ -16,7 +16,7 @@ public:
     std::unordered_map<int, Link *> links;
 
 public:
-    std::string GetInfo() const;
+    std::string getInfo() const;
 
     void makeConnections(std::unordered_map<int, std::pair<int, int>> connections);
 };

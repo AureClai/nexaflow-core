@@ -7,10 +7,10 @@ public:
     Vehicle(int type);
 
     // Getter for the vehicle's ID
-    int GetID() const;
+    int getID() const;
 
     // Getter for the vehicle's type
-    int GetType() const;
+    int getType() const;
 
 private:
     static int nextID; // Static variable to generate unique IDs for vehicles

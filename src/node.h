@@ -27,24 +27,23 @@ class Node
 {
 public:
     // Constructor
-    Node(const int id, const std::string &name, int type) : id(id), name(name), type(type)
+    Node(const int id, const std::string &name) : id(id), name(name)
     {
-        NumOutgoingLinks = 0;
-        NumIncomingLinks = 0;
+        numOutgoingLinks = 0;
+        numIncomingLinks = 0;
     };
 
     // Member variables
     int id;
     std::string name;
-    int type;
-    std::vector<Link *> OutgoingLinks;
-    std::vector<Link *> IncomingLinks;
-    int NumOutgoingLinks;
-    int NumIncomingLinks;
+    std::vector<Link *> outgoingLinks;
+    std::vector<Link *> incomingLinks;
+    int numOutgoingLinks;
+    int numIncomingLinks;
     std::unordered_map<std::pair<Lane *, Lane *>, TurnMove, pair_hash> turnMovesMap;
 
-    std::unordered_map<Lane *, Event *> next_arrivals;
-    std::unordered_map<Lane *, float> next_supplies;
+    std::unordered_map<Lane *, std::vector<Event *>> nextArrivals;
+    std::unordered_map<Lane *, float> nextSupplies;
     Event *next_event;
 
 private:

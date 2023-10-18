@@ -1,6 +1,6 @@
 #include "network.h"
 
-std::string Network::GetInfo() const
+std::string Network::getInfo() const
 {
     std::string info = "Network info \n";
 

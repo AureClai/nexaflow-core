@@ -5,18 +5,18 @@ std::string Node::GetInfo() const
 {
     std::string info = "Node Name: " + name + "\n";
     info += "ID: " + std::to_string(id) + "\n";
-    info += "Type: " + std::to_string(type) + "\n";
-    info += "Number of Outgoing Links: " + std::to_string(NumOutgoingLinks) + "\n";
-    info += "Number of Incoming Links: " + std::to_string(NumIncomingLinks) + "\n";
+    // info += "Type: " + std::to_string(type) + "\n";
+    info += "Number of Outgoing Links: " + std::to_string(numOutgoingLinks) + "\n";
+    info += "Number of Incoming Links: " + std::to_string(numIncomingLinks) + "\n";
 
     info += "Outgoing Link IDs:\n";
-    for (const Link *outgoingLink : OutgoingLinks)
+    for (const Link *outgoingLink : outgoingLinks)
     {
         info += "  " + std::to_string(outgoingLink->id) + "\n";
     }
 
     info += "Incoming Link IDs:\n";
-    for (const Link *incomingLink : IncomingLinks)
+    for (const Link *incomingLink : incomingLinks)
     {
         info += "  " + std::to_string(incomingLink->id) + "\n";
     }
@@ -26,15 +26,15 @@ std::string Node::GetInfo() const
 
 void Node::connect_incoming_link(Link* link)
 {
-    IncomingLinks.push_back(link);
-    NumIncomingLinks++;
+    incomingLinks.push_back(link);
+    numIncomingLinks++;
 }
 
 void Node::connect_outgoing_link(Link * link)
 {
 
-    OutgoingLinks.push_back(link);
-    NumOutgoingLinks++;
+    outgoingLinks.push_back(link);
+    numOutgoingLinks++;
 }
 
 int Node::getPassedCount() const
@@ -71,15 +71,15 @@ TurnMove *Node::findTurnMove(Lane *in, Lane *out)
 
 void Node::initialize(){
     // Next arrivals
-    for (const auto* link : IncomingLinks){
+    for (const auto* link : incomingLinks){
         for (const auto &pair : link->lanes){
-            next_arrivals[pair.second] = nullptr;
+            nextArrivals[pair.second] = std::vector<Event *>();
         }
     }
     // Next supplies
-    for (const auto* link : OutgoingLinks){
+    for (const auto* link : outgoingLinks){
         for (const auto &pair : link->lanes){
-            next_supplies[pair.second] = -std::numeric_limits<float>::infinity();
+            nextSupplies[pair.second] = -std::numeric_limits<float>::infinity();
         }
     }
 }

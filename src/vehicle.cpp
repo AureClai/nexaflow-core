@@ -6,10 +6,10 @@ Vehicle::Vehicle(int type) : type(type) {
     id = nextID++; // Assign a unique ID to the vehicle and increment nextID
 }
 
-int Vehicle::GetID() const {
+int Vehicle::getID() const {
     return id;
 }
 
-int Vehicle::GetType() const {
+int Vehicle::getType() const {
     return type;
 }

@@ -8,7 +8,7 @@
 void Simulation::initializeAtNodeAtCapacity(int nodeID, int numberOfVehicles)
 {
     Node *nextNode = network.nodes[nodeID];
-    Link *nextLink = nextNode->OutgoingLinks[0];
+    Link *nextLink = nextNode->outgoingLinks[0];
     Link *prevLink = nullptr;
     Lane *prevLane = nullptr;
     float capacity = nextLink->fd.C;
@@ -19,8 +19,8 @@ void Simulation::initializeAtNodeAtCapacity(int nodeID, int numberOfVehicles)
     {
         Vehicle *new_vehicle = new Vehicle(0);
         Lane *nextLane = nextLink->lanes[vehCount % nextLink->numLanes];
-        Event *new_event = new Event(nextNode, new_vehicle->GetID(), 0, currTime, prevLink, prevLane, nextLink, nextLane, "vehicle_event");
-        vehicles[new_vehicle->GetID()] = new_vehicle;
+        Event *new_event = new Event(nextNode, new_vehicle->getID(), 0, currTime, prevLink, prevLane, nextLink, nextLane, "vehicle_event");
+        vehicles[new_vehicle->getID()] = new_vehicle;
         events.push_back(new_event);
         currTime += 1 / capacity;
         vehCount += 1;
@@ -75,15 +75,15 @@ void Simulation::processNextEvent()
     {
         next_event->previousLane->storeOutEvent(next_event);
     }
-    if (next_event->node->type != 2)
+    if (next_event->node->numOutgoingLinks != 0)
     {
         next_event->nextLane->storeInEvent(next_event);
         Node *p_nextNode = next_event->nextLink->nodeDown;
         Link *p_nextLink = nullptr;
         Lane *p_nextLane = nullptr;
-        if (p_nextNode->type != 2)
+        if (p_nextNode->numOutgoingLinks != 0)
         {
-            p_nextLink = p_nextNode->OutgoingLinks[0];
+            p_nextLink = p_nextNode->outgoingLinks[0];
             p_nextLane = p_nextLink->lanes[0];
             // find best lane... TODO
             std::vector<TurnMove *> authorizedTurnMoves;
