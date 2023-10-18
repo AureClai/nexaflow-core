@@ -36,7 +36,8 @@ int main()
 
     Network network = Network(nodes, links);
 
-    std::unordered_map<int, std::pair<int, int>> connections = {
+    std::unordered_map<
+    int, std::pair<int, int>> connections = {
         {0, {0, 1}},
         {1, {1, 2}},
         {2, {2, 3}}};

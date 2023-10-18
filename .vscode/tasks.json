@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label" : "build",
+            "type": "shell",
+            "command" : "g++",
+            "args": [
+                "-g",
+                "src/*.cpp",
+                "-o",
+                "bin/nexaflow.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "./bin/nexaflow.exe",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}
