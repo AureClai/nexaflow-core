@@ -9,6 +9,9 @@
    id="svg1"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
    sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo_nom_2048.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -25,8 +28,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.25606581"
-     inkscape:cx="958.73793"
-     inkscape:cy="1200.8632"
+     inkscape:cx="1046.606"
+     inkscape:cy="1005.6009"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="1912"
@@ -157,17 +160,18 @@
     <linearGradient
        id="linearGradient4"
        gradientTransform="matrix(6.3705131,0,0,5.6628543,-364.08878,-241.86445)"
-       x1="82.117784"
-       y1="69.099686"
-       x2="124.83435"
-       y2="69.099686"
-       gradientUnits="userSpaceOnUse">
+       x1="124.55269"
+       y1="72.325211"
+       x2="114.74173"
+       y2="73.357376"
+       gradientUnits="userSpaceOnUse"
+       xlink:href="#linearGradient3">
       <stop
-         style="stop-color:#042f55;stop-opacity:1;"
+         style="stop-color:#035c92;stop-opacity:1;"
          offset="0"
          id="stop3" />
       <stop
-         style="stop-color:#042f55;stop-opacity:0;"
+         style="stop-color:#03b1c6;stop-opacity:1;"
          offset="1"
          id="stop4" />
     </linearGradient>
