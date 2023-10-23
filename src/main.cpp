@@ -13,9 +13,9 @@
 int main()
 {
     FD fd = FD(25.0f, 0.583334f, 0.14f, 5.0f);
-    FD fd2 = FD(25.0f, 0.25f, 0.14f, 5.0f);
+    FD fd2 = FD(25.0f, 0.025f, 0.14f, 5.0f);
     Link link = Link(0, "test", 1., 2, 0, 0.583334f, 25.0f, fd, 1000);
-    Link link2 = Link(1, "test2", 1., 1, 0, 0.583334f, 25.0f, fd2, 1000);
+    Link link2 = Link(1, "test2", 1., 2, 0, 0.583334f, 25.0f, fd2, 1000);
     // Link link3 = Link(2, "test3", 1., 1, 0, 0.583334f, 25.0f, fd, 1000);
 
     std::unordered_map<int, Link *> links;
@@ -73,7 +73,7 @@ int main()
     // std::cout << network.GetInfo() << std::endl;
 
     //
-    Simulation simulation = Simulation(network, 1500);
+    Simulation simulation = Simulation(network, 7200);
     std::cout << simulation.getInfos() << std::endl;
     simulation.initializeAtNodeAtCapacity(0, 4000);
 

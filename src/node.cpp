@@ -161,6 +161,7 @@ Lane* Node::choseNextLane(Event * nextArrivalFromLane){
             Link * link = lanePair.second->getLink();
             lastTT = link->length / link->fd.u;
         }
+        std::cout << std::to_string(lastTT) << std::endl;
         if (lastTT <= travelTime){
             lane = lanePair.second;
             laneID = lanePair.first;
@@ -168,6 +169,7 @@ Lane* Node::choseNextLane(Event * nextArrivalFromLane){
             travelTime = lastTT;
         }
     }
+
 
     return lane;
 }
@@ -188,6 +190,7 @@ void Node::computeNextEvent()
             Lane *outLane = nullptr;
             if (nextArrivalFromLane->nextLink!=nullptr){
                 outLane = choseNextLane(nextArrivalFromLane);
+                nextArrivalFromLane->nextLane = outLane;
             }
             // Lane *outLane = pair.second.front()->nextLane;
             float nextSupply = nextSupplyTimes[outLane];
@@ -199,12 +202,13 @@ void Node::computeNextEvent()
             }
         }
     }
+
     // Compute the real next
     float nextTime = std::numeric_limits<float>().infinity();
     Lane *currLane = nullptr;
     for (const auto &pair : candidates)
     {
-        if (pair.second < nextTime)
+        if (pair.second <= nextTime)
         {
             nextTime = pair.second;
             currLane = pair.first;

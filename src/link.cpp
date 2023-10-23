@@ -74,3 +74,12 @@ void Link::connect(Node *nodeIn, Node *nodeOut)
     nodeIn->connect_outgoing_link(this);
     nodeOut->connect_incoming_link(this);
 }
+
+int Link::getLaneID(Lane* lane){
+        for (const auto &pair : lanes) {
+        if (pair.second == lane) {
+            return pair.first;  // return the key when value is found
+        }
+    }
+    return -1;
+}

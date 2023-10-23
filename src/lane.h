@@ -58,10 +58,10 @@ public:
     }
 
     float getLastTravelTime(){
-        if (passedOut <= 2){
+        if (passedOut < 2){
             return -1;
         }
-        return outEvents[passedOut-1]->time-outEvents[passedOut-2]->time;
+        return outEvents[passedOut-1]->time-inEvents[passedOut-1]->time;
     }
 };
 

@@ -56,6 +56,8 @@ public:
     int getPassedOut() const;
     int getPassedIn() const;
 
+    int getLaneID(Lane* lane);
+
     void connect(Node* nodeIn, Node* nodeOut);
 };
 

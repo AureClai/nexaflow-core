@@ -164,6 +164,11 @@ void Simulation::processNextEvent(Event *next_event)
     {
         next_event->node->updateNextSupplyTime(next_event->nextLane, next_event->time);
     }
+
+    if (next_event->node->id==1){
+        std::cout << next_event->getInfos() << std::endl;
+    }
+
     next_event->node->computeNextEvent();
 }
 
@@ -227,7 +232,8 @@ void Simulation::to_csv(std::string const filename)
 
     for (auto const event : compileNodeEvents())
     {
-        data.push_back({std::to_string(event->node->id), std::to_string(event->vehID), std::to_string(event->time)});
+        std::vector<std::string> currLine = {std::to_string(event->node->id), std::to_string(event->vehID), std::to_string(event->time)};
+        data.push_back(currLine);
     }
 
     // Open the file*
