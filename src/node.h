@@ -43,8 +43,10 @@ public:
     std::unordered_map<std::pair<Lane *, Lane *>, TurnMove, pair_hash> turnMovesMap;
 
     std::unordered_map<Lane *, std::vector<Event *>> nextArrivals;
-    std::unordered_map<Lane *, float> nextSupplies;
-    Event *next_event;
+    std::unordered_map<Lane *, float> nextCapacityTimes;
+    std::unordered_map<Lane *, float> nextSupplyTimes;
+
+    std::pair<Lane*, float> nextEventLaneTime;
 
 private:
     std::unordered_map<int, Event *> passedEvents;
@@ -57,10 +59,10 @@ public:
     int getPassedCount() const;
     std::unordered_map<int, Event *> getPassedEvents() const;
     void storePassedEvent(Event *event);
-
-    void computeNextSupplies()
-    {
-    }
+    void updateNextCapacityTime(Lane *lane, float time);
+    void updateNextSupplyTime(Lane *lane, float time);
+    void computeNextEvent();
+    Lane* choseNextLane(Event* nextArrivalFromLane);
 
     void addTurnMove(Lane *in, Lane *out, bool auth, float priority);
     TurnMove *findTurnMove(Lane *in, Lane *out);

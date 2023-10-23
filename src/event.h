@@ -26,6 +26,8 @@ public:
     static bool CompareEventsByTime(const Event* event1, const Event* event2) {
         return event1->time < event2->time;
     }
+
+    std::string getInfos();
 };
 
 #endif

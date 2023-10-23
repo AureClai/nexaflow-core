@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/AureClai/nexaflow-core/blob/main/img/logo256.png" width=256 height=256/>
+  <img src="https://github.com/AureClai/nexaflow-core/blob/main/img/logo_nom_256.png" width=279 height=283/>
 </p>
 
 

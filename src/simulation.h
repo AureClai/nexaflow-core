@@ -19,7 +19,7 @@ enum class SimulationStatus
 class Simulation
 {
 public:
-    Simulation(Network network) : network(network), status(SimulationStatus::CREATED), calculationTime(-1) {}
+    Simulation(Network network, float endTime) : network(network), status(SimulationStatus::CREATED), calculationTime(-1), simulationEndTime(endTime) {}
 
 private:
     // std::vector<Event *> events;
@@ -28,10 +28,12 @@ private:
     int numberOfEventsProcessed;
     Network network;
     std::unordered_map<int, Vehicle *> vehicles;
+    int simulationEndTime;
     
     std::vector<Event*> events;
 
-    void processNextEvent();
+    void processNextEvent(Event* next_event);
+    Event* findNextEvent();
 
 public:
     SimulationStatus getStatus()
@@ -55,6 +57,7 @@ public:
     void run();
 
     std::string getInfos();
+    void to_csv(std::string const filename);
 };
 
 #endif
